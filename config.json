@@ -27,7 +27,9 @@
   },
   "ciudades": [
     "Cali, Colombia",
-    "Bogota, Colombia"
+    "Bogota, Colombia",
+    "Medellin, Colombia",
+    "Barranquilla, Colombia"
   ],
   "segmentos_activos": [
     "clinicas_dentales",
