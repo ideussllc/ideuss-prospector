@@ -1,190 +1,233 @@
 {
   "_comentario": "Archivo de configuración del sistema de prospección IDEUSS. Editar aquí para cambiar segmentos sin tocar el script.",
   "_version": "2.0",
-  "_ultima_actualizacion": "2026-07-22",
-
+  "_ultima_actualizacion": "2026-07-29",
   "activo": true,
   "leads_por_dia": 15,
   "radio_busqueda_m": 8000,
   "leads_por_consulta": 8,
   "timeout_maps_s": 90,
-
   "pipedrive": {
-    "leads_inbox":        null,
+    "leads_inbox": null,
     "pipeline_web_factory": 28,
     "stages": {
-      "cualificado":          145,
+      "cualificado": 145,
       "contacto_establecido": 146,
-      "definiendo_mockup":    147,
-      "propuesta_realizada":  148,
-      "en_negociacion":       149
+      "definiendo_mockup": 147,
+      "propuesta_realizada": 148,
+      "en_negociacion": 149
     },
     "labels": {
-      "hermes_saliente":      "🤖 Hermes_Saliente",
-      "whatsapp_inbound":     "💬 WhatsApp_Inbound",
-      "diagnostico_inbound":  "🔍 Diagnostico_Inbound",
-      "landing_inbound":      "📄 Landing_Inbound",
-      "brief_completado":     "📋 Brief_Completado"
+      "hermes_saliente": "🤖 Hermes_Saliente",
+      "whatsapp_inbound": "💬 WhatsApp_Inbound",
+      "diagnostico_inbound": "🔍 Diagnostico_Inbound",
+      "landing_inbound": "📄 Landing_Inbound",
+      "brief_completado": "📋 Brief_Completado"
     }
   },
-
   "ciudades": [
     "Cali, Colombia",
     "Bogota, Colombia"
   ],
-
   "segmentos_activos": [
     "clinicas_dentales",
     "clinicas_veterinarias",
     "centros_estetica",
     "spas_bienestar",
     "clinicas_optometria",
-    "clinicas_medicas"
+    "clinicas_medicas",
+    "servicios_medicos",
+    "laboratorios",
+    "imagenes_diagnosticas"
   ],
-
   "catalogo_segmentos": {
-
     "clinicas_dentales": {
       "nombre": "Clínicas Dentales",
-      "categorias_osm": ["dentist"],
+      "categorias_osm": [
+        "dentist"
+      ],
       "dolor_principal": "sin_cita_online",
       "descripcion_servicio": "gestión de citas, historiales clínicos y recordatorios automáticos"
     },
-
     "clinicas_veterinarias": {
       "nombre": "Clínicas Veterinarias",
-      "categorias_osm": ["veterinary"],
+      "categorias_osm": [
+        "veterinary"
+      ],
       "dolor_principal": "sin_cita_online",
       "descripcion_servicio": "seguimiento de pacientes, inventario de medicamentos y comunicación con dueños de mascotas"
     },
-
     "centros_estetica": {
       "nombre": "Centros de Estética",
-      "categorias_osm": ["gym"],
+      "categorias_osm": [
+        "gym"
+      ],
       "dolor_principal": "sin_cita_online",
       "descripcion_servicio": "agenda de turnos, seguimiento de clientes y campañas de fidelización"
     },
-
     "restaurantes": {
       "nombre": "Restaurantes",
-      "categorias_osm": ["restaurant"],
+      "categorias_osm": [
+        "restaurant"
+      ],
       "dolor_principal": "sin_reseñas_gestionadas",
       "descripcion_servicio": "gestión de reservas, pedidos online y fidelización de clientes"
     },
-
     "hoteles": {
       "nombre": "Hoteles y Hospedajes",
-      "categorias_osm": ["hotel", "guest_house"],
+      "categorias_osm": [
+        "hotel",
+        "guest_house"
+      ],
       "dolor_principal": "sin_cita_online",
       "descripcion_servicio": "reservas online, check-in digital y comunicación automatizada con huéspedes"
     },
-
     "farmacias": {
       "nombre": "Farmacias y Droguerías",
-      "categorias_osm": ["pharmacy"],
+      "categorias_osm": [
+        "pharmacy"
+      ],
       "dolor_principal": "sin_reseñas_gestionadas",
       "descripcion_servicio": "gestión de inventario, recordatorios de medicamentos y fidelización de clientes"
     },
-
     "clinicas_medicas": {
       "nombre": "Clínicas y Consultorios Médicos",
-      "categorias_osm": ["doctor"],
+      "categorias_osm": [
+        "doctor"
+      ],
       "dolor_principal": "sin_cita_online",
       "descripcion_servicio": "agendamiento digital de citas, recordatorios automáticos e historias clínicas"
     },
-
     "gimnasios": {
       "nombre": "Gimnasios y Centros Deportivos",
-      "categorias_osm": ["gym", "swimming_pool"],
+      "categorias_osm": [
+        "gym",
+        "swimming_pool"
+      ],
       "dolor_principal": "sin_cita_online",
       "descripcion_servicio": "inscripciones online, control de asistencia y comunicación con miembros"
     },
-
     "tiendas_mascotas": {
       "nombre": "Tiendas y Servicios para Mascotas",
-      "categorias_osm": ["veterinary"],
+      "categorias_osm": [
+        "veterinary"
+      ],
       "dolor_principal": "whatsapp_manual",
       "descripcion_servicio": "pedidos online, recordatorios de servicios y fidelización de dueños de mascotas"
     },
-
     "talleres_automotriz": {
       "nombre": "Talleres y Servicios Automotrices",
-      "categorias_osm": ["car_wash"],
+      "categorias_osm": [
+        "car_wash"
+      ],
       "dolor_principal": "whatsapp_manual",
       "descripcion_servicio": "agendamiento de servicios, seguimiento de reparaciones y notificaciones automáticas"
     },
-
     "colegios_institutos": {
       "nombre": "Colegios e Institutos Educativos",
-      "categorias_osm": ["school"],
+      "categorias_osm": [
+        "school"
+      ],
       "dolor_principal": "procesos_manuales",
       "descripcion_servicio": "matriculación digital, comunicación con padres y gestión académica automatizada"
     },
-
     "contadores_abogados": {
       "nombre": "Contadores, Abogados y Consultores",
-      "categorias_osm": ["bank"],
+      "categorias_osm": [
+        "bank"
+      ],
       "dolor_principal": "web_desactualizada",
       "descripcion_servicio": "captación de clientes online, gestión documental y CRM especializado"
     },
-
     "constructoras_inmobiliarias": {
       "nombre": "Constructoras e Inmobiliarias",
-      "categorias_osm": ["bank"],
+      "categorias_osm": [
+        "bank"
+      ],
       "dolor_principal": "web_desactualizada",
       "descripcion_servicio": "portales de propiedades, CRM de seguimiento de clientes y automatización de cotizaciones"
     },
-
     "agencias_viajes": {
       "nombre": "Agencias de Viajes y Turismo",
-      "categorias_osm": ["hotel"],
+      "categorias_osm": [
+        "hotel"
+      ],
       "dolor_principal": "sin_cita_online",
       "descripcion_servicio": "cotizaciones automáticas, seguimiento de reservas y comunicación con viajeros"
     },
-
     "spas_bienestar": {
       "nombre": "Spas y Centros de Bienestar",
-      "categorias_osm": ["gym"],
+      "categorias_osm": [
+        "gym"
+      ],
       "dolor_principal": "sin_cita_online",
       "descripcion_servicio": "reservas de tratamientos, recordatorios y programa de fidelización de clientes"
     },
-
     "panaderias_cafes": {
       "nombre": "Panaderías, Cafeterías y Cafés",
-      "categorias_osm": ["cafe", "bakery"],
+      "categorias_osm": [
+        "cafe",
+        "bakery"
+      ],
       "dolor_principal": "sin_reseñas_gestionadas",
       "descripcion_servicio": "pedidos anticipados, programa de puntos y comunicación automatizada con clientes frecuentes"
     },
-
     "logistica_transporte": {
       "nombre": "Empresas de Logística y Transporte",
-      "categorias_osm": ["taxi"],
+      "categorias_osm": [
+        "taxi"
+      ],
       "dolor_principal": "procesos_manuales",
       "descripcion_servicio": "gestión de rutas, tracking en tiempo real y comunicación automatizada con clientes"
     },
-
     "empresas_seguridad": {
       "nombre": "Empresas de Seguridad",
-      "categorias_osm": ["police"],
+      "categorias_osm": [
+        "police"
+      ],
       "dolor_principal": "procesos_manuales",
       "descripcion_servicio": "gestión de contratos, reportes automáticos y comunicación con clientes"
     },
-
     "centros_belleza": {
       "nombre": "Peluquerías y Centros de Belleza",
-      "categorias_osm": ["gym"],
+      "categorias_osm": [
+        "gym"
+      ],
       "dolor_principal": "whatsapp_manual",
       "descripcion_servicio": "reservas de citas, recordatorios automáticos y fidelización de clientes"
     },
-
     "clinicas_optometria": {
       "nombre": "Ópticas y Clínicas de Optometría",
-      "categorias_osm": ["doctor"],
+      "categorias_osm": [
+        "doctor"
+      ],
       "dolor_principal": "sin_cita_online",
       "descripcion_servicio": "agendamiento de exámenes visuales, recordatorios y seguimiento de pedidos"
+    },
+    "servicios_medicos": {
+      "nombre": "Servicios Médicos Especializados",
+      "categorias_osm": [
+        "doctors",
+        "clinic"
+      ],
+      "señal_dolor": "sin_cita_online"
+    },
+    "laboratorios": {
+      "nombre": "Laboratorios Clínicos",
+      "categorias_osm": [
+        "doctors"
+      ],
+      "señal_dolor": "sin_cita_online"
+    },
+    "imagenes_diagnosticas": {
+      "nombre": "Centros de Imágenes Diagnósticas",
+      "categorias_osm": [
+        "doctors",
+        "clinic"
+      ],
+      "señal_dolor": "sin_cita_online"
     }
   },
-
   "email": {
     "remitente_nombre": "Alejandro Torres — IDEUSS",
     "remitente_email": "ventas@ideuss.com",
