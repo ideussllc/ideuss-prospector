@@ -3,9 +3,9 @@
   "_version": "2.0",
   "_ultima_actualizacion": "2026-07-29",
   "activo": true,
-  "leads_por_dia": 30,
+  "leads_por_dia": 15,
   "radio_busqueda_m": 8000,
-  "leads_por_consulta": 10,
+  "leads_por_consulta": 8,
   "timeout_maps_s": 90,
   "pipedrive": {
     "leads_inbox": null,
