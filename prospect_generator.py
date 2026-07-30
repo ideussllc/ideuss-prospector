@@ -1367,7 +1367,30 @@ def main():
                 pipedrive_org_id    = pd_ids.get("org_id", ""),
             )
         else:
-            log(f"  📋 Sin email — lead en Sheets para búsqueda manual")
+            log(f"  📋 Sin email — creando actividad de llamada en Pipedrive")
+            # Crear actividad: llamar para solicitar email de contacto
+            if pd_ids.get("lead_id") or pd_ids.get("org_id"):
+                phone    = lead.get("_phone", "")
+                due_date = (datetime.now() + timedelta(days=1)).strftime("%Y-%m-%d")
+                call_payload = {
+                    "subject":  f"📞 Llamar a {name} — solicitar email de contacto",
+                    "type":     "call",
+                    "due_date": due_date,
+                    "due_time": "10:00",
+                    "duration": "00:10",
+                    "done":     0,
+                    "note":     (
+                        f"No encontramos email de contacto para {name} ({niche} en {city}).\n"
+                        f"Llamar para solicitar un email de contacto y enviar propuesta.\n"
+                        f"Teléfono registrado: {phone or 'No disponible'}\n"
+                        f"Señal detectada: {lead.get('_pain', {}).get('description', '')}"
+                    ),
+                }
+                if pd_ids.get("lead_id"):   call_payload["lead_id"]   = pd_ids["lead_id"]
+                if pd_ids.get("person_id"): call_payload["person_id"] = pd_ids["person_id"]
+                if pd_ids.get("org_id"):    call_payload["org_id"]    = pd_ids["org_id"]
+                call_id = pipedrive_post("activities", call_payload)
+                log(f"  📞 Actividad de llamada creada (id={call_id})")
 
         # Registrar en seen (OSM ID + nombre normalizado)
         seen["ids"].add(osm_key)
