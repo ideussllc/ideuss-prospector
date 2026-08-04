@@ -1112,18 +1112,35 @@ background:#fffbf0;margin:16px 0;border-radius:4px">
 {pain_msg}
 </blockquote>
 
-<p>En <strong>{AGENCY_NAME}</strong> resolvemos exactamente esto. Implementamos
-soluciones de IA que permiten:</p>
+<p>En <strong>{AGENCY_NAME}</strong> trabajamos con tres paquetes según tu alcance:</p>
 
-<ul>
-  <li>✅ Automatizar la captación y seguimiento de clientes (CRM inteligente)</li>
-  <li>✅ Agendar citas online 24/7 sin intervención humana</li>
-  <li>✅ Comunicar su propuesta de valor de forma clara y convincente</li>
-  <li>✅ Conectar marketing, ventas y operación en un solo sistema</li>
-</ul>
+<table style="width:100%;border-collapse:collapse;margin:16px 0;font-size:14px">
+<tr style="background:#1a73e8;color:#fff">
+  <th style="padding:10px;text-align:left">Paquete</th>
+  <th style="padding:10px;text-align:center">Setup</th>
+  <th style="padding:10px;text-align:center">Mensual</th>
+</tr>
+<tr style="background:#f8f9ff">
+  <td style="padding:10px;border-bottom:1px solid #eee"><strong>Starter</strong> — Landing 1 página + WhatsApp</td>
+  <td style="padding:10px;text-align:center;border-bottom:1px solid #eee"><strong>desde $400 USD</strong></td>
+  <td style="padding:10px;text-align:center;border-bottom:1px solid #eee">$59 USD/mes</td>
+</tr>
+<tr>
+  <td style="padding:10px;border-bottom:1px solid #eee"><strong>Growth</strong> — Multi-página + CRM + WhatsApp IA</td>
+  <td style="padding:10px;text-align:center;border-bottom:1px solid #eee"><strong>$1.050 USD</strong></td>
+  <td style="padding:10px;text-align:center;border-bottom:1px solid #eee">$179 USD/mes</td>
+</tr>
+<tr style="background:#f8f9ff">
+  <td style="padding:10px"><strong>Scale</strong> — Multi-canal + Voz + Chat web IA</td>
+  <td style="padding:10px;text-align:center"><strong>$2.100 USD</strong></td>
+  <td style="padding:10px;text-align:center">$299 USD/mes</td>
+</tr>
+</table>
 
-<p><strong>El resultado:</strong> más clientes, menos carga operativa,
-mayor rentabilidad — visible en los primeros 30 días.</p>
+<p style="font-size:13px;color:#666">
+💳 Facturación en COP al TRM del día para clientes en Colombia.<br>
+El precio final se define en una reunión de 30 minutos según el alcance real de tu proyecto.
+</p>
 
 {mockup_block}
 {brief_block}
