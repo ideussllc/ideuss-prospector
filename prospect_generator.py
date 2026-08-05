@@ -1241,6 +1241,13 @@ def create_gmail_draft(recipient: str, email_content: dict, lead_name: str,
 
 def get_or_create_sheet() -> str:
     """Devuelve el ID del Sheet de reporte, creándolo si no existe."""
+    # Primero buscar en variable de entorno
+    env_sheet = os.environ.get("GOOGLE_SHEET_ID", "")
+    if env_sheet:
+        with open(SHEET_FILE, "w") as f:
+            f.write(env_sheet)
+        return env_sheet
+
     if os.path.exists(SHEET_FILE):
         with open(SHEET_FILE) as f:
             sid = f.read().strip()
@@ -1248,32 +1255,46 @@ def get_or_create_sheet() -> str:
                 return sid
 
     log("  📊 Creando Google Sheet de reporte...")
-    result = run_gapi("sheets", "create",
-                      "--title", "IDEUSS — Reporte de Prospección Diaria")
-    if not result:
+    try:
+        import google.oauth2.credentials
+        import googleapiclient.discovery
+
+        token_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "google_token.json")
+        with open(token_path) as tf:
+            td = json.load(tf)
+        creds = google.oauth2.credentials.Credentials(
+            token=td.get("token"), refresh_token=td.get("refresh_token"),
+            token_uri="https://oauth2.googleapis.com/token",
+            client_id=td.get("client_id"), client_secret=td.get("client_secret"),
+        )
+        service = googleapiclient.discovery.build("sheets", "v4", credentials=creds)
+        sheet = service.spreadsheets().create(body={
+            "properties": {"title": "IDEUSS — Reporte de Prospección Diaria"}
+        }).execute()
+        sid = sheet.get("spreadsheetId", "")
+        if not sid:
+            return ""
+
+        with open(SHEET_FILE, "w") as f:
+            f.write(sid)
+
+        # Encabezados
+        headers = [["Fecha","Nombre","Nicho","Ciudad","Dirección",
+                    "Teléfono","WhatsApp","Email","Website","Google Maps",
+                    "Señal de Dolor","Pipedrive","Borrador Gmail","Asunto"]]
+        service.spreadsheets().values().update(
+            spreadsheetId=sid, range="Hoja 1!A1:N1",
+            valueInputOption="RAW", body={"values": headers}
+        ).execute()
+        log(f"  ✅ Sheet creado: https://docs.google.com/spreadsheets/d/{sid}")
+        return sid
+    except Exception as e:
+        log(f"  ⚠️  Error creando sheet: {e}")
         return ""
-
-    sid = result.get("spreadsheetId", "")
-    if not sid:
-        return ""
-
-    with open(SHEET_FILE, "w") as f:
-        f.write(sid)
-
-    # Encabezados
-    headers = [[
-        "Fecha", "Nombre", "Nicho", "Ciudad", "Dirección",
-        "Teléfono", "WhatsApp", "Email", "Website", "Google Maps",
-        "Señal de Dolor", "Pipedrive", "Borrador Gmail", "Asunto"
-    ]]
-    run_gapi("sheets", "update", sid, "Hoja 1!A1:N1",
-             "--values", json.dumps(headers))
-    log(f"  ✅ Sheet creado: https://docs.google.com/spreadsheets/d/{sid}")
-    return sid
 
 
 def save_to_sheets(report: list, sheet_id: str):
-    """Añade las filas del reporte al Google Sheet."""
+    """Añade las filas del reporte al Google Sheet usando la API directamente."""
     if not sheet_id:
         return
     today = datetime.now().strftime("%Y-%m-%d")
@@ -1296,10 +1317,32 @@ def save_to_sheets(report: list, sheet_id: str):
             r["email_asunto"],
         ])
 
-    result = run_gapi("sheets", "append", sheet_id, "Hoja 1!A:N",
-                      "--values", json.dumps(rows))
-    if result:
+    try:
+        import google.oauth2.credentials
+        import googleapiclient.discovery
+
+        token_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "google_token.json")
+        with open(token_path) as tf:
+            td = json.load(tf)
+
+        creds = google.oauth2.credentials.Credentials(
+            token         = td.get("token"),
+            refresh_token = td.get("refresh_token"),
+            token_uri     = "https://oauth2.googleapis.com/token",
+            client_id     = td.get("client_id"),
+            client_secret = td.get("client_secret"),
+        )
+        service = googleapiclient.discovery.build("sheets", "v4", credentials=creds)
+        service.spreadsheets().values().append(
+            spreadsheetId = sheet_id,
+            range         = "Hoja 1!A:N",
+            valueInputOption = "RAW",
+            insertDataOption = "INSERT_ROWS",
+            body          = {"values": rows},
+        ).execute()
         log(f"  ✅ {len(rows)} filas guardadas en Google Sheets")
+    except Exception as e:
+        log(f"  ⚠️  Sheets error: {e}")
 
 
 # ═════════════════════════════════════════════════════════════════════════════
