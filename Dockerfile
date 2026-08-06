@@ -25,6 +25,7 @@ ENV APOLLO_API_KEY=""
 ENV FAL_KEY=""
 ENV GOOGLE_SHEET_ID="1eWonq7pQiH25rLwgXTN2iK92W3LQWKaU0YQyk1gevxA"
 ENV GOOGLE_TOKEN_B64=""
+ENV SUPABASE_SECRET_KEY=""
 ENV TZ="America/Bogota"
 
 # Scheduler Python — más confiable que cron del SO con Docker
