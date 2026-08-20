@@ -32,7 +32,7 @@ WEEKDAYS      = {0, 1, 2, 3, 4}  # Lunes=0 ... Viernes=4
 # ── Configuración Supabase keepalive ──────────────────────────────────────────
 SUPABASE_URL  = "https://lbzyovfyiffeuybomcyf.supabase.co"
 SUPABASE_KEY  = os.environ.get("SUPABASE_SECRET_KEY", "")
-PING_EVERY_DAYS = 3
+PING_EVERY_DAYS = 1  # Ping diario — evita pausa por inactividad (Supabase free pausa a los 7 días)
 
 
 def should_run_prospector(now: datetime) -> bool:
